@@ -12,7 +12,7 @@ namespace VendingMachineApp.Test
         [TestInitialize()]
         public void Startup()
         {
-            var vendingMachineFactory = new VendingMachineFactory(new TestCoinRepository()); // should rather use a builder to initialize different states of an object;
+            var vendingMachineFactory = new VendingMachineFactory(new TestCoinRepository()); // should rather use a builder to initialize different states of an object; (better than a factory)
             vendingMachine = vendingMachineFactory.CreateDollarVendingMachine();
         }
         
