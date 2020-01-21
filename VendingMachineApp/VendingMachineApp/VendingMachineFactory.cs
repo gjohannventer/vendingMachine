@@ -1,16 +1,20 @@
 ﻿namespace VendingMachineApp
 {
-    public static class VendingMachineFactory
+    public class VendingMachineFactory : IVendingMachineFactory
     {
-        public static IVendingMachine CreatePoundVendingMachine()
+        private readonly ICoinRepository _coinRepository;
+        public VendingMachineFactory(ICoinRepository coinRepository)
         {
-            return new VendingMachine(new[] { 50, 20, 10, 5, 2 , 1 }); // Always in order from maximun to minimum
+            _coinRepository = coinRepository;
+        }
+        public IVendingMachine CreatePoundVendingMachine()
+        {
+            return new VendingMachine(_coinRepository.GetPoundCoins()); // Always in order from maximum to minimum
         }
 
-
-        public static IVendingMachine CreateDollarVendingMachine()
+        public IVendingMachine CreateDollarVendingMachine()
         {
-            return new VendingMachine(new[] { 25, 10, 5, 1 });
+            return new VendingMachine(_coinRepository.GetDollarCoins());
         }
     }
 }

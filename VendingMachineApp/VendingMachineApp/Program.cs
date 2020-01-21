@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace VendingMachineApp
 {
@@ -6,10 +7,12 @@ namespace VendingMachineApp
     {
         static void Main(string[] args)
         {
-            var vendingMachine = VendingMachineFactory.CreateDollarVendingMachine();
+            var vendingMachineFactory = new VendingMachineFactory(new CoinRepository());
+            var vendingMachine = vendingMachineFactory.CreateDollarVendingMachine();
             var purchaseAmount = new Money(1.25m);
             var tenderAmount = new Money(2.15m);
-            vendingMachine.CalculateChange(purchaseAmount, tenderAmount);
+            var changeReceived = vendingMachine.CalculateChange(purchaseAmount, tenderAmount);
+            changeReceived.ToList().ForEach(change => Console.WriteLine(change));
         }
     }
 }

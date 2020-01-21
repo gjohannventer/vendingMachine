@@ -5,6 +5,6 @@ namespace VendingMachineApp
     public class ChangeCalculationDto
     {
         public int RemainingAmountInCents { get; set; }
-        public List<int> Coins { get; set; } = new List<int>();
+        public List<Coin> Coins { get; set; } = new List<Coin>();
     }
 }
